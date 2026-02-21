@@ -54,7 +54,8 @@ resource "aws_iam_user" "newuser" {
 resource "aws_iam_user_group_membership" "team" {
   user   = aws_iam_user.newuser.name
   groups = [
-    data.aws_iam_group.existing_admin.group_name
+    data.aws_iam_group.existing_admin.group_name,
+  ]
   
 
 }
