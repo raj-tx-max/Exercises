@@ -36,7 +36,7 @@ resource "aws_iam_user" "newuser" {
   tags = {
     Role = "DevOps"
   }
-
+}
 # -----------------------------
 # Add Salario to admin Group
 # -----------------------------
@@ -47,7 +47,7 @@ resource "aws_iam_user" "newuser" {
 #  ]
 #  group = data.aws_iam_group.existing_admin.group_name
 #}
-#}
+#
 # --------------------------------------
 # Tell your membership resource to look at the Data instead of the Resource.
 # --------------------------------------
@@ -55,7 +55,6 @@ resource "aws_iam_user_group_membership" "team" {
   user   = aws_iam_user.newuser.name
   groups = [
     data.aws_iam_group.existing_admin.group_name
-  ]
-
+  
 
 }
