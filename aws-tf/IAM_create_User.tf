@@ -16,7 +16,7 @@ data "aws_iam_group" "existing_admin" {
 # Attach 'AdministratorAccess' policy to group
 # -----------------------------
 resource "aws_iam_group_policy_attachment" "test-attach" {
-  group      = aws_iam_group.existing_admin.name
+  group      = data.aws_iam_group.existing_admin.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
@@ -38,7 +38,7 @@ resource "aws_iam_user" "newuser" {
 #  users = [
 #    aws_iam_user.newuser.name,
 #  ]
-#  group = aws_iam_group.existing_admin.name
+#  group = data.aws_iam_group.existing_admin.name
 #}
 #}
 # --------------------------------------
