@@ -1,3 +1,10 @@
+terraform {
+  backend "s3" {
+    bucket = "1terraform-state-bucket"
+    key    = "state/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
 # -----------------------------
 # Creating new IAM Group admin
 # -----------------------------
@@ -50,11 +57,5 @@ resource "aws_iam_user_group_membership" "team" {
     data.aws_iam_group.existing_admin.group_name
   ]
 
-terraform {
-  backend "s3" {
-    bucket = "1terraform-state-bucket"
-    key    = "state/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
+
 }
