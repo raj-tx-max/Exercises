@@ -68,4 +68,3 @@ resource "aws_iam_user_group_membership" "team" {
     data.aws_iam_group.existing_admin.group_name,
   ] 
 }
-}
