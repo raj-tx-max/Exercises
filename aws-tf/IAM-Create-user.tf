@@ -67,4 +67,5 @@ resource "aws_iam_user_group_membership" "team" {
   groups = [
     data.aws_iam_group.existing_admin.group_name,
   ] 
+  
 }
