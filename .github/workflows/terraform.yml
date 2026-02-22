@@ -21,17 +21,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+       
+        # 1. Setup the Cache Directory (speed up) so that terraform init doesn't have to download the AWS plugins from scratch every single time.
+      - name: Create Terraform Plugin Cache Dir
+        run: mkdir -p ~/.terraform.d/plugin-cache
+
+      # 2. Cache the Plugins
+      - name: Cache Terraform
+        uses: actions/cache@v4
+        with:
+          path: ~/.terraform.d/plugin-cache
+          # The key changes if your provider versions change
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-
+        with:
+          terraform_wrapper: false # Set to false if you want raw terraform output
+           
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -no-color
         if: github.event_name == 'pull_request'
+        run: terraform plan -no-color
 
       - name: Terraform Apply
+      # Only runs on pushes to main, not on PRs
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
