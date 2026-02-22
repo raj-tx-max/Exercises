@@ -13,7 +13,7 @@ terraform {
 #}
 
 # -----------------------------
-# Checking if group already exists before creating new Group
+# Checking if IAM group already exists before creating new Group
 # -----------------------------
 data "aws_iam_group" "existing_admin" {
   group_name = "admin"
