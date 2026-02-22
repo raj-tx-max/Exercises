@@ -11,10 +11,11 @@ terraform {
     key    = "state/terraform.tfstate"
     region = "us-east-1"
   }
-  provider "aws" {
-  region = "us-east-1"
   }
 
+provider "aws" {
+  region = "us-east-1"
+}
 # ----------------------------------
 # Creating fresh new IAM Group admin
 # ----------------------------------
