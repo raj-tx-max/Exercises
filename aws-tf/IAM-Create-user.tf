@@ -15,31 +15,31 @@ terraform {
   region = "us-east-1"
   }
 
-# -----------------------------
+# ----------------------------------
 # Creating fresh new IAM Group admin
-# -----------------------------
+# ----------------------------------
 #resource "aws_iam_group" "admin" {
 #  name = "admin"
 #}
 
-# -----------------------------
-# Assuming IAM group already exists, use data resource
-# -----------------------------
+# ----------------------------------------------------------------
+# Assuming IAM group already exists in aws,will use data resource
+# ----------------------------------------------------------------
 data "aws_iam_group" "existing_admin" {
   group_name = "admin"
 }
 
-# -----------------------------
+# -----------------------------------------------
 # Attach 'AdministratorAccess' policy to group
-# -----------------------------
+# -----------------------------------------------
 resource "aws_iam_group_policy_attachment" "test-attach" {
   group      = data.aws_iam_group.existing_admin.group_name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-# -----------------------------------------------------
+# -----------------------------------------------------------------------------------------------
 # create a IAM User called 'gh-tf' with Devops role especially for github actions for terraform 
-# -----------------------------------------------------
+# -----------------------------------------------------------------------------------------------
 resource "aws_iam_user" "newuser" {
   name = "gh-tf"
   path = "/system/"
@@ -48,7 +48,7 @@ resource "aws_iam_user" "newuser" {
   }
 }
 # -----------------------------
-# Add Salario to admin Group
+# Add gh-tf to admin Group
 # -----------------------------
 #resource "aws_iam_group_membership" "team" {
 #  name = "tf-testing-group-membership"
