@@ -1,19 +1,29 @@
 terraform {
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
   backend "s3" {
     bucket = "1terraform-state-bucket"
     key    = "state/terraform.tfstate"
     region = "us-east-1"
   }
-}
+  provider "aws" {
+  region = "us-east-1"
+  }
+
 # -----------------------------
-# Creating new IAM Group admin
+# Creating fresh new IAM Group admin
 # -----------------------------
 #resource "aws_iam_group" "admin" {
 #  name = "admin"
 #}
 
 # -----------------------------
-# Checking if IAM group already exists before creating new Group
+# Assuming IAM group already exists, use data resource
 # -----------------------------
 data "aws_iam_group" "existing_admin" {
   group_name = "admin"
@@ -55,7 +65,6 @@ resource "aws_iam_user_group_membership" "team" {
   user   = aws_iam_user.newuser.name
   groups = [
     data.aws_iam_group.existing_admin.group_name,
-  ]
-  
-
+  ] 
+}
 }
