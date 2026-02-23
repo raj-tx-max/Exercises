@@ -45,7 +45,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform plan -no-color
 
       - name: Terraform Apply
