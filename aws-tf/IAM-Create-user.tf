@@ -39,10 +39,10 @@ resource "aws_iam_group_policy_attachment" "test-attach" {
 }
 
 # -----------------------------------------------------------------------------------------------
-# create a IAM User called 'gh-tf' with Devops role especially for github actions for terraform 
+# create a IAM User called 'tf-user-1' with Devops role especially for github actions for terraform 
 # -----------------------------------------------------------------------------------------------
 resource "aws_iam_user" "newuser" {
-  name = "gh-tf2"
+  name = "tf-user-1"
   path = "/system/"
   tags = {
     Role = "DevOps"
