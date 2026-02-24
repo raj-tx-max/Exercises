@@ -6,11 +6,6 @@ terraform {
     }
   }
 }
-
-# Configure the GitHub Provider
-provider "github" {
-   
-}
 # Create a new GitHub repository
 resource "github_repository" "my_repo" {
     name        = "my-terraform-repo"
