@@ -9,6 +9,7 @@ terraform {
       source  = "integrations/github"
       
     }
+    
   }
   backend "s3" {
     bucket = "1terraform-state-bucket"
@@ -16,3 +17,6 @@ terraform {
     region = "us-east-1"
   }
   }
+provider "github" {
+  # Leave empty. It will grab the GITHUB_TOKEN from the environment.
+    }

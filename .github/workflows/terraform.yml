@@ -14,6 +14,7 @@ jobs:
       run:
         working-directory: ./aws-tf
     env:
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "us-east-1" # Update to your region
@@ -52,6 +53,4 @@ jobs:
       # Only runs on pushes to main, not on PRs
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          
