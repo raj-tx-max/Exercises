@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      
-    }
-  }
-}
+
 # Create a new GitHub repository
 resource "github_repository" "my_repo" {
     name        = "my-terraform-repo"
