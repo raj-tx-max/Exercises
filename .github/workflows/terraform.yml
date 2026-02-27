@@ -38,9 +38,9 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false # Set to false if you want raw terraform output
-           
+
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -reconfigure -input=false
 
       - name: Terraform Plan
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
