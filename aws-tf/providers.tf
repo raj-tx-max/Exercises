@@ -1,8 +1,10 @@
-provider aws {
-     region = "us-east-1"
-    }
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 provider "github" {
-  # Leave empty. It will grab the GITHUB_TOKEN from the environment.
-    }
+  # Reads GITHUB_TOKEN from environment
+}
   
 
