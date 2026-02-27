@@ -1,4 +1,4 @@
-name: "Terraform CI/CD"
+name: "Terraform CI/CD for Github"
 
 on:
   push:
@@ -43,11 +43,11 @@ jobs:
         run: terraform init -reconfigure -input=false
 
       - name: Terraform Plan
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/Dev' && github.event_name == 'push'
         run: terraform plan -no-color
 
       - name: Terraform Apply
       # Only runs on pushes to main, not on PRs
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/Dev' && github.event_name == 'push'
         run: terraform apply -auto-approve
          
