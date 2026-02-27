@@ -10,9 +10,3 @@ resource "github_repository" "my_new_project" {
   # Initialize the repo with an empty README
   auto_init = true
 }
-
-# Output the URL so you can find it easily in your GitHub Action logs
-output "repo_url" {
-  value       = github_repository.my_new_project.html_url
-  description = "The URL of the newly created repository"
-}
