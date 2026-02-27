@@ -7,6 +7,7 @@ terraform {
   }
 }
 provider "github" {
+ owner = "raj-tx-max"
   # Reads GITHUB_TOKEN from environment
 }
   
