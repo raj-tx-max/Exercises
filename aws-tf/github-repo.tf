@@ -1,4 +1,4 @@
-# This resource creates the actual repository
+# This resource creates the actual git repository
 
 resource "github_repository" "my_new_project" {
   name        = "tf-created-repo"
